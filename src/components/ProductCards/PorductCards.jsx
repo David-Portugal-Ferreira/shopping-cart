@@ -18,7 +18,11 @@ function ProductCards({ prod, addItemsToCart }) {
       <button 
       disabled={numberOfItems<=0}
       onClick={() => {
-        addItemsToCart(prod, numberOfItems);
+        const item = {
+          prod: prod,
+          numberOfItems: numberOfItems
+        }
+        addItemsToCart(item);
         setNumberOfItems(0);
         }}>
         Add to Cart

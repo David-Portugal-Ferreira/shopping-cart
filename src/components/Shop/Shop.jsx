@@ -25,16 +25,25 @@ function Shop() {
       ? useGetData(`products`)
       : useGetData(`products/category/${itemsToFetch}`);
 
-  function addItemsToCart(prod, numberOfItems) {
-    if(items.length === 0) {
-        setItems([{prod, numberOfItems: numberOfItems}]);
-        return;
+  function addItemsToCart(product) {
+    let foundCartItem = false;
+    if (items.length === 0) {
+      setItems([...items, product]);
+      return;
     } else {
-        setItems([...items, { prod, numberOfItems: numberOfItems }]);
+      let productsInCart = items;
+      productsInCart.forEach((prod) => {
+        if (prod.prod.id === product.prod.id) {
+          prod.numberOfItems += product.numberOfItems;
+          setItems(productsInCart);
+          foundCartItem = true;
+        }
+      });
+      if(!foundCartItem) {
+        setItems([...items, product])
+      }
     }
   }
-
-  console.log(items)
 
   if (loading) return <Loading />;
   if (error) return <Error />;
