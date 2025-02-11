@@ -1,0 +1,10 @@
+.header {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    font-size: large;
+    background-color: aqua;
+    padding-left: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

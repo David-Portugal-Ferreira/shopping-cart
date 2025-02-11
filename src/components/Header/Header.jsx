@@ -1,6 +1,8 @@
+import styles from "./Header.module.css"
+
 function Header() {
     return (
-        <div>
+        <div className={styles.header}>
             <h1>Shop Name</h1>
         </div>
     )
