@@ -4,6 +4,9 @@ import useGetData from "../../hooks/getData";
 import Loading from "../Loading";
 import Error from "../Error";
 import ProductCards from "../ProductCards/PorductCards";
+import Header from "../Header/Header";
+import NavBar from "../Navbar/NavBar";
+import styles from "./Shop.module.css";
 
 function Shop() {
   const { category } = useParams();
@@ -39,27 +42,39 @@ function Shop() {
           foundCartItem = true;
         }
       });
-      if(!foundCartItem) {
-        setItems([...items, product])
+      if (!foundCartItem) {
+        setItems([...items, product]);
       }
     }
   }
 
-  if (loading) return <Loading />;
+  if (loading)
+    return (
+      <>
+        <Header />
+        <Loading />
+      </>
+    );
   if (error) return <Error />;
 
   return (
-    <div className="products-wrapper">
-      {data.map((prod) => {
-        return (
-          <ProductCards
-            key={prod.id}
-            prod={prod}
-            addItemsToCart={addItemsToCart}
-          />
-        );
-      })}
-    </div>
+    <>
+      <Header />
+      <div className={styles["shop-content"]}>
+        <NavBar />
+        <div className={styles["products-wrapper"]}>
+          {data.map((prod) => {
+            return (
+              <ProductCards
+                key={prod.id}
+                prod={prod}
+                addItemsToCart={addItemsToCart}
+              />
+            );
+          })}
+        </div>
+      </div>
+    </>
   );
 }
 
