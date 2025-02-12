@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router";
 import { useState } from "react";
 import useGetData from "../../hooks/getData";
 import Loading from "../Loading";
@@ -7,43 +7,32 @@ import ProductCards from "../ProductCards/PorductCards";
 import Header from "../Header/Header";
 import NavBar from "../Navbar/NavBar";
 import styles from "./Shop.module.css";
+import Cart from "../Cart/Cart";
 
 function Shop() {
   const { category } = useParams();
-  let itemsToFetch =
-    category === undefined
-      ? ""
-      : category == ":men's clothing"
-      ? "men's%20clothing"
-      : category == ":women's clothing"
-      ? "women's%20clothing"
-      : category == ":jewelery"
-      ? "jewelery"
-      : category == ":electronics"
-      ? "electronics"
-      : "";
-  const [items, setItems] = useState([]);
-  const { data, loading, error } =
-    itemsToFetch === ""
-      ? useGetData(`products`)
-      : useGetData(`products/category/${itemsToFetch}`);
+  const [cart, setCart] = useState([]);
+  const endpoint = category
+    ? `products/category/${category.slice(1)}`
+    : `products`;
+  const { data, loading, error } = useGetData(endpoint);
 
   function addItemsToCart(product) {
     let foundCartItem = false;
-    if (items.length === 0) {
-      setItems([...items, product]);
+    if (cart.length === 0) {
+      setCart([...cart, product]);
       return;
     } else {
-      let productsInCart = items;
+      let productsInCart = [...cart];
       productsInCart.forEach((prod) => {
         if (prod.prod.id === product.prod.id) {
           prod.numberOfItems += product.numberOfItems;
-          setItems(productsInCart);
+          setCart(productsInCart);
           foundCartItem = true;
         }
       });
       if (!foundCartItem) {
-        setItems([...items, product]);
+        setCart([...cart, product]);
       }
     }
   }
@@ -59,7 +48,11 @@ function Shop() {
 
   return (
     <>
-      <Header />
+      <Header>
+        <Link to={"/cart"} state={{ cart }}>
+          Cart
+        </Link>
+      </Header>
       <div className={styles["shop-content"]}>
         <NavBar />
         <div className={styles["products-wrapper"]}>
