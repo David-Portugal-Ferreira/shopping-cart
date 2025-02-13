@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useGetData from "../../hooks/getData";
 import Loading from "../Loading";
 import Error from "../Error";
@@ -12,8 +12,19 @@ import { mdiCartOutline } from "@mdi/js";
 
 function Shop() {
   const { category } = useParams();
-  const [cart, setCart] = useState([]);
-  const [numberOfItems, setNumberOfItems] = useState(0);
+  const [cart, setCart] = useState(() => {
+    let cartInLocalStorage = JSON.parse(localStorage.getItem("cartData"));
+
+    if (cartInLocalStorage !== undefined && cartInLocalStorage !== null) {
+      return cartInLocalStorage;
+    } else {
+      return [];
+    }
+  });
+  let numberOfItems = 0;
+  cart.forEach((item) => {
+    numberOfItems += (item.numberOfItems)
+  })
   const endpoint = category
     ? `products/category/${category.slice(1)}`
     : `products`;
@@ -26,15 +37,17 @@ function Shop() {
       if (prod.prod.id === product.prod.id) {
         prod.numberOfItems += product.numberOfItems;
         setCart(productsInCart);
-        setNumberOfItems((prevNumber) => prevNumber + product.numberOfItems);
         foundCartItem = true;
       }
     });
     if (!foundCartItem) {
       setCart([...cart, product]);
-      setNumberOfItems((prevNumber) => prevNumber + product.numberOfItems);
     }
   }
+
+  useEffect(() => {
+    localStorage.setItem("cartData", JSON.stringify(cart));
+  }, [cart]);
 
   if (loading)
     return (
