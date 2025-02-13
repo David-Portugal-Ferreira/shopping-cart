@@ -7,11 +7,13 @@ import ProductCards from "../ProductCards/PorductCards";
 import Header from "../Header/Header";
 import NavBar from "../Navbar/NavBar";
 import styles from "./Shop.module.css";
-import Cart from "../Cart/Cart";
+import Icon from "@mdi/react";
+import { mdiCartOutline } from "@mdi/js";
 
 function Shop() {
   const { category } = useParams();
   const [cart, setCart] = useState([]);
+  const [numberOfItems, setNumberOfItems] = useState(0);
   const endpoint = category
     ? `products/category/${category.slice(1)}`
     : `products`;
@@ -19,21 +21,18 @@ function Shop() {
 
   function addItemsToCart(product) {
     let foundCartItem = false;
-    if (cart.length === 0) {
-      setCart([...cart, product]);
-      return;
-    } else {
-      let productsInCart = [...cart];
-      productsInCart.forEach((prod) => {
-        if (prod.prod.id === product.prod.id) {
-          prod.numberOfItems += product.numberOfItems;
-          setCart(productsInCart);
-          foundCartItem = true;
-        }
-      });
-      if (!foundCartItem) {
-        setCart([...cart, product]);
+    let productsInCart = [...cart];
+    productsInCart.forEach((prod) => {
+      if (prod.prod.id === product.prod.id) {
+        prod.numberOfItems += product.numberOfItems;
+        setCart(productsInCart);
+        setNumberOfItems((prevNumber) => prevNumber + product.numberOfItems);
+        foundCartItem = true;
       }
+    });
+    if (!foundCartItem) {
+      setCart([...cart, product]);
+      setNumberOfItems((prevNumber) => prevNumber + product.numberOfItems);
     }
   }
 
@@ -50,7 +49,8 @@ function Shop() {
     <>
       <Header>
         <Link to={"/cart"} state={{ cart }}>
-          Cart
+          <Icon path={mdiCartOutline} size={1.5} />
+          <span>{numberOfItems}</span>
         </Link>
       </Header>
       <div className={styles["shop-content"]}>

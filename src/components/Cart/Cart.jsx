@@ -1,4 +1,5 @@
 import { useLocation } from "react-router";
+import Header from "../Header/Header";
 
 function Cart() {
   const location = useLocation();
@@ -6,13 +7,16 @@ function Cart() {
 
   return (
     <div>
-      {items.length > 0 ? (
-        items.map((item) => {
-          return <div key={item.id}>{item.prod.title}</div>;
-        })
-      ) : (
-        <p>Cart is empty</p>
-      )}
+      <Header />
+      <div>
+        {items.length > 0 ? (
+          items.map((item) => {
+            return <div key={item.id}>{item.prod.title}</div>;
+          })
+        ) : (
+          <p>Cart is empty</p>
+        )}
+      </div>
     </div>
   );
 }
