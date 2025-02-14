@@ -9,22 +9,15 @@ import NavBar from "../Navbar/NavBar";
 import styles from "./Shop.module.css";
 import Icon from "@mdi/react";
 import { mdiCartOutline } from "@mdi/js";
+import { useSendDataToLocalStorage } from "../../hooks/sendDataToLocalStorage";
 
 function Shop() {
   const { category } = useParams();
-  const [cart, setCart] = useState(() => {
-    let cartInLocalStorage = JSON.parse(localStorage.getItem("cartData"));
-
-    if (cartInLocalStorage !== undefined && cartInLocalStorage !== null) {
-      return cartInLocalStorage;
-    } else {
-      return [];
-    }
-  });
+  const [cart, setCart] = useState(useSendDataToLocalStorage("get"));
   let numberOfItems = 0;
   cart.forEach((item) => {
-    numberOfItems += (item.numberOfItems)
-  })
+    numberOfItems += item.numberOfItems;
+  });
   const endpoint = category
     ? `products/category/${category.slice(1)}`
     : `products`;
@@ -46,7 +39,7 @@ function Shop() {
   }
 
   useEffect(() => {
-    localStorage.setItem("cartData", JSON.stringify(cart));
+    useSendDataToLocalStorage("set", cart);
   }, [cart]);
 
   if (loading)
@@ -61,7 +54,7 @@ function Shop() {
   return (
     <>
       <Header>
-        <Link to={"/cart"} state={{ cart }}>
+        <Link to={"/cart"}>
           <Icon path={mdiCartOutline} size={1.5} />
           <span>{numberOfItems}</span>
         </Link>

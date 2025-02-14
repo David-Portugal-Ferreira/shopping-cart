@@ -8,5 +8,18 @@
 }
 
 .product-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
     background-color: rgb(186, 186, 186);
+    padding: 0px 20px;
+    margin: 0px 10px;
+}
+
+.product-info p {
+    max-width: 250px;
+}
+
+.product-info input[type="number"] {
+    width: 50px;
 }

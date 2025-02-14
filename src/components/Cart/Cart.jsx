@@ -1,40 +1,56 @@
-import { useLocation } from "react-router";
+import { useEffect, useState } from "react";
 import Header from "../Header/Header";
+import Nav from "../Navbar/NavBar";
 import styles from "./Cart.module.css";
+import { useSendDataToLocalStorage } from "../../hooks/sendDataToLocalStorage";
+import { CartItem } from "./CartItem";
 
 function calculateTotalPrice(items) {
   let totalPrice = 0;
   items.forEach((item) => {
     totalPrice += item.numberOfItems * item.prod.price;
   });
-  return totalPrice;
+  return totalPrice.toFixed(2);
 }
 
 function Cart() {
-  const location = useLocation();
-  const items = location.state.cart;
+  const [items, setItems] = useState(useSendDataToLocalStorage("get"));
   let totalPrice = calculateTotalPrice(items);
+
+  function handleDeleteItem(id) {
+    let newArray = items.filter((item) => item.prod.id !== id);
+    setItems([...newArray])
+  }
+
+  useEffect(() => {
+    useSendDataToLocalStorage("set", items)
+  }, [items])
 
   const displayItemsInCart = items.map((item) => {
     return (
-      <div key={item.prod.id} className={styles["product-info"]}>
-        {item.prod.title} - {item.numberOfItems} - Total Price:{" "}
-        {item.numberOfItems * item.prod.price}€
-      </div>
+      <CartItem
+        key={item.prod.id}
+        item={item}
+        handleDeleteItem={handleDeleteItem}
+      />
     );
   });
 
   return (
     <div>
       <Header />
+      <Nav />
       <div className={styles["products-wrapper"]}>
         {items.length > 0 ? (
           <>
+            <h3>Your Cart</h3>
             {displayItemsInCart}
-            <div className={styles["products-total"]}>Your total is {totalPrice}€</div>
+            <div className={styles["products-total"]}>
+              Your total is {totalPrice}€
+            </div>
           </>
         ) : (
-          <p>Cart is empty</p>
+          <h3>Your cart is empty</h3>
         )}
       </div>
     </div>

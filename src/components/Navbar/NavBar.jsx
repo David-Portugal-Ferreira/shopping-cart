@@ -10,16 +10,18 @@ function NavBar() {
 
   return (
     <div className={styles["navbar-wrapper"]}>
-      <button onClick={() => handleNavigate("men's clothing")}>
-        Men's Clothing
-      </button>
-      <button onClick={() => handleNavigate("women's clothing")}>
-        Women's Chothing
-      </button>
-      <button onClick={() => handleNavigate("jewelery")}>Jewelry</button>
-      <button onClick={() => handleNavigate("electronics")}>
-        Electronics
-      </button>
+      <div className={styles["navbar"]}>
+        <button onClick={() => handleNavigate("men's clothing")}>
+          Men's Clothing
+        </button>
+        <button onClick={() => handleNavigate("women's clothing")}>
+          Women's Chothing
+        </button>
+        <button onClick={() => handleNavigate("jewelery")}>Jewelry</button>
+        <button onClick={() => handleNavigate("electronics")}>
+          Electronics
+        </button>
+      </div>
     </div>
   );
 }
