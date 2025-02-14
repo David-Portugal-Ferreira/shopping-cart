@@ -1,10 +1,15 @@
 .homepage-individual-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 350px;
-    border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 350px;
+  border-radius: 30px;
+}
 
-    background-color: yellow;
+.homepage-individual-card h1 {
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo preto transparente */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
 }
