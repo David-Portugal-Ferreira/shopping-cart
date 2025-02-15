@@ -1,8 +1,8 @@
 import { useParams, Link } from "react-router";
 import { useEffect, useState } from "react";
 import useGetData from "../../hooks/getData";
-import Loading from "../Loading";
-import Error from "../Error";
+import Loading from "../Loading/Loading";
+import Error from "../Error/Error";
 import ProductCards from "../ProductCards/PorductCards";
 import Header from "../Header/Header";
 import NavBar from "../Navbar/NavBar";

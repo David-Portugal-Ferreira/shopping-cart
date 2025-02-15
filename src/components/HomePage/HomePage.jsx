@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import useGetData from "../../hooks/getData";
 import HomePageCards from "../HomePageCards/HomePageCards";
-import Loading from "../Loading";
+import Loading from "../Loading/Loading";
 import styles from "./HomePage.module.css";
 import electronicsImg from "../../assets/electronics.jpg";
 import jewelryImg from "../../assets/jewelry.jpg";

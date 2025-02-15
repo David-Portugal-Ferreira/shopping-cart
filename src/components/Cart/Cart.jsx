@@ -4,6 +4,7 @@ import Nav from "../Navbar/NavBar";
 import styles from "./Cart.module.css";
 import { useSendDataToLocalStorage } from "../../hooks/sendDataToLocalStorage";
 import { CartItem } from "./CartItem";
+import { Link } from "react-router";
 
 function calculateTotalPrice(items) {
   let totalPrice = 0;
@@ -39,8 +40,8 @@ function Cart() {
   return (
     <div>
       <Header />
-      <Nav />
       <div className={styles["products-wrapper"]}>
+        <Link to={"/shop"} className={styles["continue-shop"]}>Continue Shopping</Link>
         {items.length > 0 ? (
           <>
             <h3>Your Cart</h3>

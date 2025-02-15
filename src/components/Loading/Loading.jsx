@@ -1,7 +1,9 @@
+import styles from "./Loading.module.css"
+
 function Loading() {
     return (
       <>
-        <div>
+        <div className={styles.wrapper}>
           <h1>Loading</h1>
         </div>
       </>

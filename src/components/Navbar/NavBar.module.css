@@ -32,3 +32,9 @@
     background: white;
     color: #007bff;
 }
+
+@media (max-width: 500px){
+  .navbar {
+    flex-direction: column;
+  }
+}

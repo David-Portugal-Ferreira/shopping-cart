@@ -4,6 +4,26 @@
     align-items: center;
 }
 
+.continue-shop {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    background: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.continue-shop:hover {
+    background: black;
+    color: white;
+}
+
+
 .product-info {
     display: flex;
     align-items: center;
