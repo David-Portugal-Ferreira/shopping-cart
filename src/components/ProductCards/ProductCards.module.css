@@ -4,7 +4,12 @@
     align-items: center;
     border: 1px solid black;
     border-radius: 30px;
-    width: 350px;
+    width: 350px;    
+    transition: all 0.3s ease-in-out;
+}
+
+.product-wrapper:hover {
+    transform: scale(1.05);
 }
 
 .product-wrapper img {
@@ -14,26 +19,74 @@
 }
 
 .product-card {
-    display: flex;
-    margin: 10px 20px;
-    flex-direction: column;
-    align-items: center;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 260px;
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+
+.product-card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
 }
 
 .add-to-cart-section {
     display: flex;
-    background-color: aqua;
-    padding: 10px;
-    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
 }
 
-.product-card input {
-    width: 30px;
-    border: 0px;
-    margin-right: 3px;
+
+.add-to-cart-section input {
+    width: 45px;
     text-align: center;
+    font-size: 16px;
+    padding: 6px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}   
+
+.add-to-cart-section {
+    background: #00d2ff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
-.product-card button:disabled {
-    display: hidden;
+
+.add-to-cart-section button {
+    background: rgb(255, 255, 255); 
+    border: white;
+    padding: 12px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #333;    
+}
+
+.add-to-cart-section button:disabled {
+    background: rgba(255, 255, 255, 0.5);
+    cursor: not-allowed;
+}
+
+.add-to-cart-section button:hover:not(:disabled) {
+    background: #0056b3;
+    color: white;
 }

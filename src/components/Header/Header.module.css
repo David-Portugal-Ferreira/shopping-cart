@@ -3,10 +3,13 @@
     align-items: center;
     justify-content: space-between;
     height: 50px;
-    background-color: aqua;
-    padding: 10px 25px;
+    background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+    padding: 15px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .header a {
+    color: white;   
     cursor: pointer;
 }

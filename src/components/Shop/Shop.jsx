@@ -56,7 +56,7 @@ function Shop() {
       <Header>
         <Link to={"/cart"}>
           <Icon path={mdiCartOutline} size={1.5} />
-          <span>{numberOfItems}</span>
+          {numberOfItems > 0 && <span>{numberOfItems}</span>}
         </Link>
       </Header>
       <div className={styles["shop-content"]}>

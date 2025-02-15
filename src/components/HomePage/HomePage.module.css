@@ -1,31 +1,40 @@
 a {
-    text-decoration: none;
-    color: rgb(71, 66, 66);
+  text-decoration: none;
+  color: rgb(71, 66, 66);
 }
 a:active {
-    color: rgb(71, 66, 66);
+  color: rgb(71, 66, 66);
 }
 
 .homepage-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .homepage-cards {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 25px;
-    margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 100px;
 }
 
 .shopButton {
-    margin: 50px;
-    padding: 10px 20px;
-    background-color: aqua;
-    border-radius: 30px;
+  margin-top: 40px;
+  background: #00d2ff;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
+
 .shopButton a {
-    font-size: 30px;
+  font-size: 18px;
+  color: white;
+}
+
+.shopButton:hover {
+  background: #0080ff;
 }
